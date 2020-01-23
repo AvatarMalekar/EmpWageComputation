@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 echo "--------------------------------------------WELLCOME TO EMPLOYEE WAGE COMPUTATION--------------------------------------------"
 WAGE_PER_HOUR=20;
 EMPLOYEE_IS_PART_TIME=0;
@@ -21,11 +21,12 @@ function getWorkingHours(){
 	esac
 	echo $work_hours
 }
-while [ $dayCount -le $TOTAL_WORKING_DAYS_OF_MONTH -o $hoursCount -le $MAX_WOKING_HOURS_FOR_MONTH ]
+while [ $dayCount -lt $TOTAL_WORKING_DAYS_OF_MONTH -a $hoursCount -lt $MAX_WOKING_HOURS_FOR_MONTH ]
 do
 	((dayCount++))
 	random=$((RANDOM%3))
 	work_hours=$( getWorkingHours $random )
+	echo daily wage is:$(($WAGE_PER_HOUR*$work_hours))
 	hoursCount=$(($hoursCount+$work_hours))
 done
 MONTHLY_EMPLOYEE_WAGE=$(($hoursCount*$WAGE_PER_HOUR))
