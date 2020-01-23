@@ -26,7 +26,7 @@ do
 	((dayCount++))
 	random=$((RANDOM%3))
 	work_hours=$( getWorkingHours $random )
-	echo daily wage is:$(($WAGE_PER_HOUR*$work_hours))
+	echo "Wage for Day" $dayCount " is:" $(($WAGE_PER_HOUR*$work_hours))
 	hoursCount=$(($hoursCount+$work_hours))
 done
 MONTHLY_EMPLOYEE_WAGE=$(($hoursCount*$WAGE_PER_HOUR))
