@@ -3,6 +3,7 @@ echo "--------------------------------------------WELLCOME TO EMPLOYEE WAGE COMP
 WAGE_PER_HOUR=20;
 EMPLOYEE_IS_PART_TIME=0;
 EMPOLYEE_IS_FULL_TIME=1;
+TOTAL_WORKING_DAYS_OF_MONTH=20;
 random=$((RANDOM%3))
 case  $random  in
 		$EMPLOYEE_IS_PART_TIME)
@@ -19,5 +20,7 @@ case  $random  in
 				;;
 esac
 DAILY_EMPLOYEE_WAGE=$(($WAGE_PER_HOUR*$work_hours))
+MONTHLY_EMPLOYEE_WAGE=$(($TOTAL_WORKING_DAYS_OF_MONTH*$WAGE_PER_HOUR*$work_hours))
 echo "Daily employee wage is :" $DAILY_EMPLOYEE_WAGE
+echo "Monthly employee wage is :"$MONTHLY_EMPLOYEE_WAGE
 
