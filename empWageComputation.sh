@@ -4,23 +4,29 @@ WAGE_PER_HOUR=20;
 EMPLOYEE_IS_PART_TIME=0;
 EMPOLYEE_IS_FULL_TIME=1;
 TOTAL_WORKING_DAYS_OF_MONTH=20;
-random=$((RANDOM%3))
-case  $random  in
-		$EMPLOYEE_IS_PART_TIME)
-				work_hours=4;
-				echo "Employee is working Part time"
-				;;
-		$EMPOLYEE_IS_FULL_TIME)
-				work_hours=8
-				echo "Employee is working full time"
-            ;;
-		*)
-				work_hours=0
-				echo "Emloyee is absent"
-				;;
-esac
-DAILY_EMPLOYEE_WAGE=$(($WAGE_PER_HOUR*$work_hours))
-MONTHLY_EMPLOYEE_WAGE=$(($TOTAL_WORKING_DAYS_OF_MONTH*$WAGE_PER_HOUR*$work_hours))
-echo "Daily employee wage is :" $DAILY_EMPLOYEE_WAGE
-echo "Monthly employee wage is :"$MONTHLY_EMPLOYEE_WAGE
+MAX_WOKING_HOURS_FOR_MONTH=100;
 
+dayCount=0;
+hoursCount=0;
+while [ $dayCount -le $TOTAL_WORKING_DAYS_OF_MONTH -o $hoursCount -le $MAX_WOKING_HOURS_FOR_MONTH ]
+do
+	((dayCount++))
+	random=$((RANDOM%3))
+
+	case  $random  in
+      $EMPLOYEE_IS_PART_TIME)
+      	work_hours=4;
+         ;;
+     	$EMPOLYEE_IS_FULL_TIME)
+         work_hours=8
+         ;;
+		*)
+         work_hours=0
+         ;;
+	esac
+
+	hoursCount=$(($hoursCount+$work_hours))
+
+done
+MONTHLY_EMPLOYEE_WAGE=$(($hoursCount*$WAGE_PER_HOUR))
+echo "Monthly employee wage is :"$MONTHLY_EMPLOYEE_WAGE
